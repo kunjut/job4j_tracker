@@ -14,7 +14,7 @@ public class Library {
         replace0to3(devBooks);
         print(devBooks);
         System.out.println("\nPrint \"Clean Code\" book if present:");
-        for (Book book: devBooks) {
+        for (Book book : devBooks) {
             if ("Clean Code".equals(book.getName())) {
                 System.out.println(book.getName() + ", " + book.getNumberOfPages() + " pages");
             }
