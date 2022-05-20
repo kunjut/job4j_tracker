@@ -9,5 +9,8 @@ public class StartUI {
         LocalDateTime created = item.getCreated();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
         System.out.println(created.format(formatter));
+
+        Item testItem = new Item(1, "Override toString()");
+        System.out.println(testItem);
     }
 }
