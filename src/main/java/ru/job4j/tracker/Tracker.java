@@ -37,39 +37,31 @@ public class Tracker {
         int result = -1;
         for (int index = 0; index < size; index++) {
             if (items[index].getId() == id) {
-               result = index;
-               break;
+                result = index;
+                break;
             }
         }
         return result;
     }
 
     public boolean replace(int id, Item item) {
-        if (id < 1 || item == null) {
-            System.out.println("Передан некорректный аргумент");
-            return false;
-        }
         int index = indexOf(id);
-        if (index == -1) {
-            return false;
+        boolean result = index != -1;
+        if (result) {
+            item.setId(id);
+            items[index] = item;
         }
-        item.setId(id);
-        items[index] = item;
-        return true;
+        return result;
     }
 
     public boolean delete(int id) {
-        if (id < 1) {
-            System.out.println("Передан некорректный аргумент");
-            return false;
-        }
         int index = indexOf(id);
-        if (index == -1) {
-            return false;
+        boolean result = index != -1;
+        if (result) {
+            System.arraycopy(items, index + 1, items, index, size - 1 - index);
+            items[size - 1] = null;
+            size--;
         }
-        System.arraycopy(items, index + 1, items, index, size - 1 - index);
-        items[size - 1] = null;
-        size--;
-        return true;
+        return result;
     }
 }
