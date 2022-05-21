@@ -37,53 +37,31 @@ public class Tracker {
         int result = -1;
         for (int index = 0; index < size; index++) {
             if (items[index].getId() == id) {
-               result = index;
-               break;
+                result = index;
+                break;
             }
         }
         return result;
     }
 
     public boolean replace(int id, Item item) {
-        if (!isValid(id) || !isValid(item)) {
-            return false;
-        }
         int index = indexOf(id);
-        if (index == -1) {
-            return false;
+        boolean result = index != -1;
+        if (result) {
+            item.setId(id);
+            items[index] = item;
         }
-        item.setId(id);
-        items[index] = item;
-        return true;
+        return result;
     }
 
     public boolean delete(int id) {
-        if (!isValid(id)) {
-            return false;
-        }
         int index = indexOf(id);
-        if (index == -1) {
-            return false;
+        boolean result = index != -1;
+        if (result) {
+            System.arraycopy(items, index + 1, items, index, size - 1 - index);
+            items[size - 1] = null;
+            size--;
         }
-        System.arraycopy(items, index + 1, items, index, size - 1 - index);
-        items[size - 1] = null;
-        size--;
-        return true;
-    }
-
-    private boolean isValid(int id) {
-        if (id < 1) {
-            System.err.println("Передан некорректный аргумент: " + id + ", id должен быть >= 1");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isValid(Item item) {
-        if (item == null) {
-            System.err.println("В item передан null, нужен корректный объект");
-            return false;
-        }
-        return true;
+        return result;
     }
 }
