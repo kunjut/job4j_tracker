@@ -10,21 +10,21 @@ public class StartUI {
             System.out.print("Select: ");
             int select = Integer.parseInt(scanner.nextLine());
             if (select == 0) {
-                System.out.println("\n=== Create a new Item ===");
+                System.out.println("=== Create a new Item ===");
                 System.out.print("Enter name: ");
                 String name = scanner.nextLine();
                 Item item = new Item(name);
                 tracker.add(item);
-                System.out.println("Добавленная заявка: " + item + "\n");
+                System.out.println("Добавленная заявка: " + item);
             } else if (select == 1) {
-                System.out.println("\n=== Show all items ===");
+                System.out.println("=== Show all items ===");
                 Item[] items = tracker.findAll();
                 if (items.length > 0) {
                     for (Item item : items) {
                         System.out.println(item);
                     }
                 } else {
-                    System.out.println("Хранилище еще не содержит заявок\n");
+                    System.out.println("Хранилище еще не содержит заявок");
                 }
             } else if (select == 6) {
                 run = false;
