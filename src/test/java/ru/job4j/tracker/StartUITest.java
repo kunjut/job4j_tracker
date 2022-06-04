@@ -77,6 +77,28 @@ public class StartUITest {
     }
 
     @Test
+    public void whenInvalidExit() {
+        Tracker tracker = new Tracker();
+        Output out = new StubOutput();
+        Input input = new StubInput(
+                new String[]{"1", "0"}
+        );
+        UserAction[] actions = {
+                new ExitAction(out)
+        };
+        new StartUI(out).init(input, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu:" + ln
+                        + "0. Exit program" + ln
+                        + "Wrong input, you can select: 0 .. 0" + ln
+                        + "Menu:" + ln
+                        + "0. Exit program" + ln
+                        + "=== Exit program ===" + ln
+        ));
+    }
+
+    @Test
     public void whenReplaceItemTestOutputIsSuccessfully() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
